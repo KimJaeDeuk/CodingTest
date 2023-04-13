@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 public class No2290_LCDTest {
 	static int s = 0;
 	static StringBuffer sb = new StringBuffer();
+	static int[][] lcd = {{0,1,2,4,5,6}, {2,5}, {0,2,3,4} ,{0,2,3,5,6}, {1,2,3,5}, {0,1,3,5,6}, {0,1,3,4,5,6}, {0,2,5}, {0,1,2,3,4,5,6}, {0,1,2,3,5,6}};
 	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,34 +17,12 @@ public class No2290_LCDTest {
 		s = Integer.parseInt(st.nextToken());
 		
 		String n = st.nextToken();
-		for(int j=0; j<s; j++) {
-			for(int i=0; i<n.length(); i++) {
-				if(n.charAt(i)=='1') {
-					addOne();
-				}else if(n.charAt(i)=='2') {
-					
-				}else if(n.charAt(i)=='3') {
-					
-				}else if(n.charAt(i)=='4') {
-					
-				}else if(n.charAt(i)=='5') {
-					
-				}else if(n.charAt(i)=='6') {
-					
-				}else if(n.charAt(i)=='7') {
-					
-				}else if(n.charAt(i)=='8') {
-					
-				}else if(n.charAt(i)=='9') {
-					
-				}else {
-					
-				}
-			}
+		
+		for(int i=0; i<n.length(); i++) {
+			
 		}
 	}
-	private static void addOne() {
-		
-	}
+	
+	
 
 }
