@@ -20,7 +20,7 @@ public class No12851_숨바꼭질2 {
 	static int min = 1000000;
 	static int dong;
 	static int result = 0;
-	static boolean visited[] = new boolean[100001];
+	static int[] visited = new int[1000001];
 	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,40 +29,47 @@ public class No12851_숨바꼭질2 {
 		int su = Integer.parseInt(st.nextToken());
 		dong = Integer.parseInt(st.nextToken());
 		queue.add(new Qclass(su, 0));
-		visited[su] = true;
+		
 		if(su==dong) {
-			System.out.println(0+"\n"+1);
-			return;
+			System.out.println(0 + "\n"+1);
+		}else {
+			bfs();
+			System.out.println(min + "\n"+result);
 		}
-		bfs();
 	}
 	private static void bfs() {
 		
 		while(!queue.isEmpty()) {
+			
 			Qclass q = queue.poll();
 			
 			int su = q.order;
-			int sec = q.sec;
+			
+			int sec = q.sec+1;
+			
+			if(sec > min) {
+				return;
+			}
 			
 			for(int i=-1; i<=1; i++) {
 				int move;
 				if(i==0) {
 					move = su*2;
-				}else {
-					move = su+=i;
-				}
+				}else
+					move = su+i; 
 				
-				if(i<0 || i>100000) continue;
+				if(move<0 || move>=1000001) continue;
 				
 				if(move==dong) {
-					result++;
 					min = sec;
-					
+					result++;
+					continue;
 				}
-				
-				
+				if(visited[move] == 0 || visited[move] == sec) {
+					queue.add(new Qclass(move,sec));
+					visited[move] = sec;
+				}
 			}
-			
 		}
 		
 	}
