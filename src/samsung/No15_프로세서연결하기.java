@@ -12,6 +12,7 @@ public class No15_프로세서연결하기 {
 	static int min_lane;
 	static int max_conn;
 	static ArrayList<int[]> list;
+	static int[][] arr;
 	static int dx[] = {0,0,-1,1};
 	static int dy[] = {1,-1,0,0};
 	public static void main(String[] args) throws Exception{
@@ -19,32 +20,35 @@ public class No15_프로세서연결하기 {
 		System.setIn(new FileInputStream("res/15_input.txt"));
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
+		arr = new int[13][13];
 		int test_case = Integer.parseInt(br.readLine());
 		StringBuilder sb = new StringBuilder();
 		for(int tc = 1; tc <= test_case; tc++) {
 			N = Integer.parseInt(br.readLine());
 			min_lane = Integer.MAX_VALUE; max_conn = 0;
-			int[][] arr = new int[N][N];
+			int cnt = 0;
 			list = new ArrayList<int[]>();
 			for(int i=0; i<N; i++) {
 				StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 				for(int j=0; j<N; j++) {
 					arr[i][j] = Integer.parseInt(st.nextToken());
 					if(arr[i][j]==1) {
-						list.add(new int[] {i,j});
+						if(i==0 || j==0 || i==N-1 || j==N-1) {
+							cnt++;
+						}else
+							list.add(new int[] {i,j});
 					}
 				}
 			}
 			sb.append("#").append(tc).append(" ");
-			dfs(0,0, 0, arr);
+			dfs(0,cnt, 0);
 			sb.append(min_lane);
 			
 			sb.append("\n");
 		}
 		System.out.println(sb);
 	}
-	private static void dfs(int n, int conn, int len, int arr[][]) {
+	private static void dfs(int n, int conn, int len) {
 		
 		if(n==list.size()) {
 			
@@ -63,9 +67,6 @@ public class No15_프로세서연결하기 {
 	
 		int[] co = list.get(n);
 
-		if(co[0]== 0 || co[0] == N-1 || co[1] == 0 || co[1] == N-1) {
-			dfs(n+1, conn+1, len, arr);
-		}
 		
 		for(int k=0; k<4; k++) {
 			
@@ -82,8 +83,8 @@ public class No15_프로세서연결하기 {
 					break;
 				}
 			}
-			if(check) {
-				dfs(n+1, conn, len, arr);
+			if(check) { 
+				dfs(n+1, conn, len);
 			}else {
 				nx = co[0];
 				ny = co[1];
@@ -94,7 +95,7 @@ public class No15_프로세서연결하기 {
 					arr[nx][ny] = 2;
 					cnt++;
 				}
-				dfs(n+1, conn+1, len+cnt, arr);
+				dfs(n+1, conn+1, len+cnt);
 				
 				nx = co[0];
 				ny = co[1];
