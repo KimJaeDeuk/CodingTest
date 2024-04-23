@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class No11332_시간초과 {
-
+	static long TIME = 100000000;
 	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,39 +16,44 @@ public class No11332_시간초과 {
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			
 			String S = st.nextToken();
-			int N = Integer.parseInt(st.nextToken());
-			int T = Integer.parseInt(st.nextToken());
-			long L = Integer.parseInt(st.nextToken())*100000000;
-			boolean pass = true;
+			int N = Integer.parseInt(st.nextToken()); // 최대범위
+			int T = Integer.parseInt(st.nextToken()); // 테스트케이스
+			long L = Integer.parseInt(st.nextToken()) * TIME; // 제한시간
+			boolean success = false;
 			if(S.equals("O(N)")) {
-				if(L < N*T) {
-					pass = false;
+				if(N * T <= L) {
+					success = true;
 				}
-			}else if(S.equals("O(2^N)")){
-				if(L < Math.pow(2, N*T)) pass = false;
-			}else if(S.equals("O(N!)")) {
-				long a = 1;
-				for(long i=1; i<=N*T; i++) {
-					if(a*i > L) {
-						pass = false;
+			} else if(S.equals("O(2^N)")){
+				
+				if(Math.pow(2, N)*T <= L) {
+					success =true;
+				}
+				
+			} else if(S.equals("O(N!)")){
+				long fact = 1;
+				boolean over = false;
+				for(int i=N; i>=2; i--) {
+					fact *= i;
+					if(fact * T >L) {
+						over =true;
 						break;
 					}
-					a = a*i;
 				}
-				
-			}else if(S.equals("O(N^2)")) {
-				
-				
-				if(L < Math.pow(N*T, 2)) pass = false;
-			}else {
-				if(L < Math.pow(N*T, 3)) pass = false;
-			}
-			if(pass) {
-				sb.append("May Pass.").append("\n");
-			}else {
-				sb.append("TLE!").append("\n");
+				if(!over)
+					success= true;
+			} else if(S.equals("O(N^3)")){
+				if(Math.pow(N, 3)*T <= L) {
+					success =true;
+				}
+			} else if(S.equals("O(N^2)")){
+				if(Math.pow(N, 2)*T <= L) {
+					success =true;
+				}
 			}
 			
+			
+			sb.append(success ? "May Pass." : "TLE!").append("\n");
 		}
 		
 		
@@ -60,6 +65,5 @@ public class No11332_시간초과 {
 
 	}
 
-	
 
 }
