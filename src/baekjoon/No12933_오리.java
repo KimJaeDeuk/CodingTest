@@ -19,7 +19,7 @@ public class No12933_오리 {
 		int d[] = new int[sound.length/5];
 		for(int i=0; i<sound.length; i++) {
 			char c = sound[i];
-			for(int j=0; j<sound.length/5; j++) {
+			for(int j=0; j<d.length; j++) {
 				int before = d[j];
 				if(d[j]%5==0 && c=='q') {
 					d[j]++;
@@ -35,10 +35,6 @@ public class No12933_오리 {
 				
 				if(before != d[j]) break;
 				
-				if(j==(sound.length/5)-1) {
-					System.out.println(-1);
-					System.exit(0);
-				}
 			}
 		}
 		for(int i=0; i<sound.length/5; i++) {
