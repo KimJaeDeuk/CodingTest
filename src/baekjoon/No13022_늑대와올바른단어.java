@@ -12,35 +12,19 @@ public class No13022_늑대와올바른단어 {
 		
 		String line = br.readLine();
 		
-		char arr[] = {'o','l','f'};
-		int cnt = 0;
+		char[] wolf = {'w', 'o', 'l', 'f'};
+		
+		int [] arr = new int[4];
+		
 		int idx = 0;
-		Stack<Integer> s = new Stack<>();
-		
-		int cnt_arr[] = new int[4];
 		for(int i=0; i<line.length(); i++) {
-			char c = line.charAt(i);
 			
-			if(c=='w') {
-				cnt_arr = new int[4];
-				cnt++;
-				idx = 0;
-			} else {
-				cnt_arr[0] = cnt;
-				if(c==arr[idx]) {
-					cnt_arr[idx+1]++;
-					if(cnt_arr[idx+1]==cnt) {
-						idx++;
-					}
-				} else {
-					System.out.println(0);
-					System.exit(0);
-				}
+			char c= line.charAt(i);
+			
+			if(c != wolf[idx]) {
+				
 			}
-			
 		}
-		System.out.println(1);
-		
 	}
 
 }
