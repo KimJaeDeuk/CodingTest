@@ -5,16 +5,17 @@ public class dfs_test {
 		
 		//순열 - Permutation (순서가 있어서 [1,2]와 [2,1]은 다름으로 처리)
 		// 서로 다른 n개에서 r개를 뽑아서 정렬하는 경우의 수
+		int N = 5;
 		System.out.println("순열 - Permutation");
-		Permutation(0,3,new boolean[5], new int[3]);
+		Permutation(0,N,new boolean[N], new int[N]);
 		
 		System.out.println("중복 순열 - 중복 Permutation");
-		Permutation(0,3 , new int[3]);
+		Permutation(0,N , new int[N]);
 		//조합 - Combination (순서가 없어서 [1,2] 와 [2,1]은 같음으로 처리)
 		System.out.println("조합 - Combination");
-		Combination(0,0, new boolean[5]);
+		Combination(0,0, new boolean[N]);
 		System.out.println("중복 조합 - Combination");
-		Combination(0,0, new int[3]);
+		Combination(0,0, new int[N]);
 	}
 
 	private static void Permutation(int depth, int N, boolean[] bs, int[] out) {
@@ -49,7 +50,7 @@ public class dfs_test {
 	}
 	private static void Combination(int depth, int start, boolean[] visited) {
 		
-		if(depth==3) {
+		if(depth==5) {
 			for(int i=0; i<5; i++)
 				if(visited[i])
 					System.out.print(arr[i]+" ");
@@ -70,7 +71,7 @@ public class dfs_test {
 	
 	private static void Combination(int depth, int start, int[] out) {
 		
-		if(depth==3) {
+		if(depth==5) {
 			for(int i=0; i<out.length; i++)
 					System.out.print(out[i]+" ");
 			System.out.println();

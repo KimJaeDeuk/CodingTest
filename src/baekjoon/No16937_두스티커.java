@@ -12,12 +12,15 @@ class Memo{
 	}
 }
 public class No16937_두스티커 {
-	static int H,W,N;
+	
+	static int maxX = 0;
+	static int maxY = 0;
+	static int maxSum = 0;
 	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		
+		int H,W,N;
 		H = Integer.parseInt(st.nextToken());
 		W = Integer.parseInt(st.nextToken());
 		
@@ -27,44 +30,42 @@ public class No16937_두스티커 {
 			st = new StringTokenizer(br.readLine(), " ");
 			arr[i] = new Memo(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 		}
-		int max = 0;
+		
 		for(int i=0; i<N-1; i++) {
-			if((arr[i].r >H && arr[i].c >H) || (arr[i].r >W && arr[i].c >W)) continue;
+			Memo first = arr[i];
+			int fx = first.r;
+			int fy = first.c;
 			for(int j=1; j<N; j++) {
 				if(i==j) continue;
-				Memo m1 = arr[i];
-				Memo m2 = arr[j];
 				
-				if(m1.r+m2.r <=H && m1.c <=W) {
-					max = Math.max((m1.r+m2.r)*m1.c, max);
-				}
-				if(m1.r+m2.r <=H && m2.c <=W) {
-					max = Math.max((m1.r+m2.r)*m2.c, max);
-				}
-				if(m1.r+m2.c <=H && m1.c <=W) {
-					max = Math.max((m1.r+m2.c)*m1.c, max);
-				}
-				if(m1.r+m2.c <=H && m2.r <=W) {
-					max = Math.max((m1.r+m2.c)*m2.r, max);
-				}
-				if(m1.r+m2.r <=W && m1.c <=H) {
-					max = Math.max((m1.r+m2.r)*m1.c, max);
-				}
-				if(m1.r+m2.r <=W && m2.c <=H) {
-					max = Math.max((m1.r+m2.r)*m2.c, max);
-				}
-				if(m1.r+m2.c <=W && m1.c <=H) {
-					max = Math.max((m1.r+m2.c)*m1.c, max);
-				}
-				if(m1.r+m2.c <=W && m2.r <=H) {
-					max = Math.max((m1.r+m2.c)*m2.r, max);
-				}
+				Memo second = arr[j];
+				int sx = second.r;
+				int sy = second.c;
 				
+				makeMaxSum(fx, fy, sx, sy, H, W);
+				
+				makeMaxSum(fx, fy, sx, sy, W, H);
 				
 			}
-			
 		}
-		System.out.println(max);
+		System.out.println(maxSum);
 	}
-
+	
+	public static int sumSquare(int a1, int a2, int b1, int b2) {
+		return (a1*a2) + (b1*b2);
+	}
+	
+	public static void makeMaxSum(int fx, int fy, int sx, int sy, int H, int W) {
+		
+		if(fx + sx <=H && Math.max(fy,sy) <=W) {
+			maxSum = Math.max(maxSum,sumSquare(fx, fy, sx, sy));
+		} else if( fx + sy <= H && Math.max(fy,sx) <= W) {
+			maxSum = Math.max(maxSum,sumSquare(fx, fy, sx, sy));
+		} else if( fy + sx <= H && Math.max(fx,sy) <= W) {
+			maxSum = Math.max(maxSum,sumSquare(fx, fy, sx, sy));
+		} else if( fy + sy <= H && Math.max(fx, sx) <= W) {
+			maxSum = Math.max(maxSum,sumSquare(fx, fy, sx, sy));
+		}
+		
+	}
 }
