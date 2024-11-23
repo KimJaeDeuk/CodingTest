@@ -67,7 +67,6 @@ public class No17_영준이의진짜BFS {
 		int dist[] = new int[N];
 		int d_i = 1;
 		while(num1!=1) {
-			
 		}
 //		if(level[num1] < level[num2]) {
 //			

@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.StringTokenizer;
-class Bosuk{
-	int m;
-	int p;
-	
-	public Bosuk(int m, int p){
-		this.m = m;
-		this.p = p;
-	}
-}
-public class 금고털이 {
 
+public class 금고털이 {
+	static class Bosuk{
+		int m;
+		int p;
+		
+		public Bosuk(int m, int p){
+			this.m = m;
+			this.p = p;
+		}
+	}
 	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -22,6 +22,7 @@ public class No1406_에디터 {
 		int pointer = sb.length();
 	
 		int N = Integer.parseInt(br.readLine());
+
 		StringTokenizer st;
 		for(int i=0; i<N; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
